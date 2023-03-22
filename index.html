@@ -7,25 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/mobile-detect@1.4.5/mobile-detect.min.js"></script>
+    <script type='text/javascript' src="https://wurfl.io/wurfl.js"></script>
     <script>
-        var md = new MobileDetect(window.navigator.userAgent);
-
-        const data = {
-            'md.mobile()': md.mobile(),
-            'md.phone()': md.phone(),
-            'md.tablet()': md.tablet(),
-            'md.userAgent()': md.userAgent(),
-            'md.os()': md.os(),
-            'md.is("iPhone")': md.is("iPhone"),
-        }
-
         document.addEventListener("DOMContentLoaded", function(event) { 
         // Access device detector here.
             let output = "";
-                for (var property in data) {
-                if (property !== 'detect') {
-                    output += property + ': ' + data[property]+'; <br />';
+            if (WURFL) {
+                for (var property in WURFL) {
+                    if (property !== 'detect') {
+                        output += property + ': ' + WURFL[property]+'; <br />';
+                    }
                 }
             }
             
