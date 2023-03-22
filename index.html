@@ -9,9 +9,9 @@
 <body>
     <script>
         function detectDeviceType() {
-            // Check if userAgent string matches mobile or tablet devices
-            var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            var isTablet = /iPad|Android/i.test(navigator.userAgent);
+             // Check if userAgent string matches mobile or tablet devices
+            var isMobile = /iPhone|iPod|Android(?=.*Mobile)|Windows Phone/i.test(navigator.userAgent);
+            var isTablet = /iPad|Android/i.test(navigator.userAgent) && !/Mobile/i.test(navigator.userAgent);
 
             // Check if matchMedia function matches mobile or tablet devices
             var isMobileMedia = window.matchMedia("only screen and (max-width: 768px)").matches;
