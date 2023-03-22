@@ -12,8 +12,16 @@
 
         document.addEventListener("DOMContentLoaded", function(event) { 
         // Access device detector here.
-            document.querySelector('#result').innerHTML = deviceDetector.device
-            console.log('deviceDetector', deviceDetector)
+            let output = "";
+            if (deviceDetector?.device) {
+                for (var property in deviceDetector) {
+                    if (property !== 'detect') {
+                        output += property + ': ' + deviceDetector[property]+'; <br />';
+                    }
+                }
+            }
+            
+            document.querySelector('#result').innerHTML = output
         });    
     </script>
     <div>Device info: <p id="result"></p></div>
