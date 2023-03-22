@@ -7,20 +7,29 @@
     <title>Document</title>
 </head>
 <body>
-    <script type='text/javascript' src="https://wurfl.io/wurfl.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function(event) { 
-        // Access device detector here.
-            let output = "";
-            if (WURFL) {
-                for (var property in WURFL) {
-                    if (property !== 'detect') {
-                        output += property + ': ' + WURFL[property]+'; <br />';
-                    }
-                }
+        function detectDeviceType() {
+            // Check if userAgent string matches mobile or tablet devices
+            var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            var isTablet = /iPad|Android/i.test(navigator.userAgent);
+
+            // Check if matchMedia function matches mobile or tablet devices
+            var isMobileMedia = window.matchMedia("only screen and (max-width: 768px)").matches;
+            var isTabletMedia = window.matchMedia("only screen and (min-width: 769px) and (max-width: 1024px)").matches;
+
+            // Determine device type based on userAgent string and matchMedia function
+            if (isMobile || isMobileMedia) {
+                return "Mobile";
+            } else if (isTablet || isTabletMedia) {
+                return "Tablet";
+            } else {
+                return "Desktop";
             }
-            
-            document.querySelector('#result').innerHTML = output
+        }
+
+        document.addEventListener("DOMContentLoaded", function(event) { 
+        // Access device detector here.           
+            document.querySelector('#result').innerHTML = detectDeviceType()
         });    
     </script>
     <div>Device info: <p id="result"></p></div>
