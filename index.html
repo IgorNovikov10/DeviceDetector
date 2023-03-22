@@ -18,9 +18,9 @@
             var isTabletMedia = window.matchMedia("only screen and (min-width: 769px) and (max-width: 1024px)").matches;
 
             // Determine device type based on userAgent string and matchMedia function
-            if (isTablet || isTabletMedia) {
+            if (isTablet && isTabletMedia) {
                 return "Tablet";
-            } else if (isMobile || isMobileMedia) {
+            } else if (isMobile && isMobileMedia) {
                 return "Mobile";
             } else {
                 return "Desktop";
