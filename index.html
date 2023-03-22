@@ -11,16 +11,16 @@
         function detectDeviceType() {
              // Check if userAgent string matches mobile or tablet devices
             var isMobile = /iPhone|iPod|Android(?=.*Mobile)|Windows Phone/i.test(navigator.userAgent);
-            var isTablet = /iPad|Android/i.test(navigator.userAgent) && !/Mobile/i.test(navigator.userAgent);
+            var isTablet = /(ipad|android(?!.*mobile))/i.test(navigator.userAgent);
 
             // Check if matchMedia function matches mobile or tablet devices
             var isMobileMedia = window.matchMedia("only screen and (max-width: 768px)").matches;
             var isTabletMedia = window.matchMedia("only screen and (min-width: 769px) and (max-width: 1024px)").matches;
 
             // Determine device type based on userAgent string and matchMedia function
-            if (isMobile && isMobileMedia) {
-                return "Mobile";
-            } else if (isTablet && isTabletMedia) {
+            if (isTablet || isTabletMedia) {
+                return "Tablet";
+            } else if (isMobile || isMobileMedia) {
                 return "Tablet";
             } else {
                 return "Desktop";
